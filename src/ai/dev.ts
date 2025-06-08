@@ -1,6 +1,6 @@
 
 import { config } from 'dotenv';
-config();
+config(); // Load environment variables from .env file
 
 import '@/ai/flows/suggest-pricing.ts';
 import '@/ai/flows/chat-assistant-flow.ts';
