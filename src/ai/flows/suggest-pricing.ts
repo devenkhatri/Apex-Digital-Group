@@ -11,37 +11,51 @@
  */
 
 import {ai} from '@/ai/genkit';
+import {z} from 'genkit'; // Added Zod import from genkit
 import {
   SuggestPricingInputSchema,
   type SuggestPricingInput,
   SuggestPricingOutputSchema,
   type SuggestPricingOutput
 } from '@/ai/schemas/pricing-schemas';
+import { services as offeredServicesList } from '@/data/mock';
 
 export type { SuggestPricingInput, SuggestPricingOutput };
 
 export async function suggestPricing(input: SuggestPricingInput): Promise<SuggestPricingOutput> {
-  return suggestPricingFlow(input);
+  const offeredServiceTitles = offeredServicesList.map(s => s.title);
+  return suggestPricingFlow({ ...input, offeredServiceTitles });
 }
+
+const ExtendedSuggestPricingInputSchema = SuggestPricingInputSchema.extend({
+  offeredServiceTitles: z.array(z.string()).describe("A list of service titles that Apex Digital Group offers.")
+});
 
 const prompt = ai.definePrompt({
   name: 'suggestPricingPrompt',
-  input: {schema: SuggestPricingInputSchema},
+  input: {schema: ExtendedSuggestPricingInputSchema},
   output: {schema: SuggestPricingOutputSchema},
   prompt: `You are an AI pricing assistant for Apex Digital Group, a full-service digital agency catering exclusively to the Indian market.
 
-You will receive a service type and a description of the client's requirements. Based on this information, you will provide:
-1. An estimated price range for the service in Indian Rupees (INR).
-2. An estimated timeline for project completion (e.g., "2-4 weeks", "1-2 months", "Approx. 6 weeks").
+You will receive a service type and a description of the client's requirements.
+Apex Digital Group offers the following services:
+{{#each offeredServiceTitles}}
+- {{{this}}}
+{{/each}}
 
 IMPORTANT:
-- You MUST use the Indian Rupee symbol (₹) exclusively for currency. Do NOT use "INR", "Rs.", or any other abbreviations or currency names. For example, a correct price response would be "₹50,000 - ₹75,000".
-- Both the price and the timeline are estimates and should be presented as such.
+- First, check if the requested 'Service Type: {{{serviceType}}}' is one of the services listed above.
+- If the 'Service Type: {{{serviceType}}}' is NOT in the list of offered services, you MUST set the 'estimatedPriceRange' to "Apex Digital Group does not currently offer '{{{serviceType}}}'. Please select from our available services." and 'estimatedTimeline' to "Not Applicable". Do NOT attempt to estimate a price for unlisted services.
+- If the 'Service Type: {{{serviceType}}}' IS in the list of offered services, then you will provide:
+  1. An estimated price range for the service in Indian Rupees (INR).
+  2. An estimated timeline for project completion (e.g., "2-4 weeks", "1-2 months", "Approx. 6 weeks").
+- You MUST use the Indian Rupee symbol (₹) exclusively for currency when providing a price. Do NOT use "INR", "Rs.", or any other abbreviations or currency names. For example, a correct price response would be "₹50,000 - ₹75,000".
+- Both the price and the timeline are estimates and should be presented as such if a service is offered.
 
 Service Type: {{{serviceType}}}
 Requirements: {{{requirements}}}
 
-Please provide a price range and timeline that are both realistic and attractive to potential clients in India, strictly using the ₹ symbol for currency.
+Based on the above, proceed.
 `, config: {
     safetySettings: [
       {
@@ -63,12 +77,19 @@ Please provide a price range and timeline that are both realistic and attractive
 const suggestPricingFlow = ai.defineFlow(
   {
     name: 'suggestPricingFlow',
-    inputSchema: SuggestPricingInputSchema,
+    inputSchema: ExtendedSuggestPricingInputSchema, // Use extended schema
     outputSchema: SuggestPricingOutputSchema,
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      // Fallback in case the model fails to produce an output, though the prompt should guide it.
+      return {
+        estimatedPriceRange: "Could not generate an estimate at this time.",
+        estimatedTimeline: "Not Applicable"
+      };
+    }
+    return output;
   }
 );
 
