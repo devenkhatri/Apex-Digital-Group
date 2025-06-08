@@ -1,6 +1,6 @@
 
 import type { Service, CaseStudy, Testimonial, TeamMember, BlogPost, ClientMetric } from '@/types';
-import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart, Languages, FileText, Palette, LineChart } from 'lucide-react'; // Added Palette, LineChart
+import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart, Languages, FileText, Palette, LineChart } from 'lucide-react';
 
 export const services: Service[] = [
   {
@@ -32,7 +32,6 @@ export const services: Service[] = [
       { name: 'Process Automation', description: 'Streamline repetitive tasks and improve workflows.' },
       { name: 'AI Integration', description: 'Embed AI capabilities into your existing systems.' },
       { name: 'Machine Learning Solutions', description: 'Develop custom ML models for predictive analytics.' },
-      // Data Analytics is now part of a dedicated service
     ],
   },
   {
@@ -58,7 +57,7 @@ export const services: Service[] = [
     description: 'End-to-end e-commerce solutions, from platform selection and custom development to payment gateway integration, inventory management, and user experience optimization for the Indian market.',
     icon: ShoppingCart,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'online store development',
+    dataAiHint: 'online store',
     subServices: [
       { name: 'Platform Setup & Customization', description: 'Shopify, WooCommerce, or custom e-commerce platform development.' },
       { name: 'Payment Gateway Integration', description: 'Integrate popular Indian payment gateways seamlessly.' },
@@ -90,7 +89,7 @@ export const services: Service[] = [
     description: 'Craft compelling content and adapt it for various regional languages and cultural contexts across India. We offer copywriting, blog writing, video content, and translation services to connect with your target audience effectively.',
     icon: Languages,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'content writing india',
+    dataAiHint: 'content writing',
     subServices: [
       { name: 'Copywriting & Editing', description: 'Create persuasive and error-free copy for websites, ads, and marketing materials.' },
       { name: 'Blog & Article Writing', description: 'Develop informative and engaging blog posts and articles to build authority.' },
@@ -106,7 +105,7 @@ export const services: Service[] = [
     description: 'Comprehensive branding and design solutions including brand strategy, logo creation, visual identity systems, marketing collateral, and UI/UX design focused on building strong brand recognition in the Indian market.',
     icon: Palette,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'brand identity design',
+    dataAiHint: 'brand identity',
     subServices: [
       { name: 'Brand Strategy & Positioning', description: 'Define your brand’s unique value proposition for the Indian market.' },
       { name: 'Logo Design & Visual Identity', description: 'Create impactful logos and cohesive brand guidelines.' },
@@ -122,7 +121,7 @@ export const services: Service[] = [
     description: 'Leverage the power of your data with our analytics and business intelligence services. We help Indian businesses uncover trends, understand customer behavior, and make informed decisions through custom dashboards and reporting.',
     icon: LineChart,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'business intelligence dashboard',
+    dataAiHint: 'bi dashboard',
     subServices: [
       { name: 'Data Visualization & Dashboards', description: 'Create interactive dashboards to monitor KPIs and track performance.' },
       { name: 'Customer Insights & Segmentation', description: 'Understand your Indian customer base for targeted strategies.' },
@@ -149,7 +148,7 @@ export const featuredCaseStudies: CaseStudy[] = [
     solution: 'Implemented a comprehensive digital marketing strategy, including targeted PPC campaigns for Indian audiences, regional SEO optimization, and a revamped e-commerce user experience reflecting local preferences.',
     results: ['200% increase in online sales within 6 months.', '50% improvement in conversion rates.', 'Significant growth in organic traffic from key Indian cities.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'ecommerce success india',
+    dataAiHint: 'ecommerce success',
     serviceCategory: 'Digital Marketing',
   },
   {
@@ -161,7 +160,7 @@ export const featuredCaseStudies: CaseStudy[] = [
     solution: 'Developed a custom hyperlocal e-commerce platform with features like quick delivery slots, regional language support, and integration with local payment wallets. Also provided initial digital marketing support to drive adoption.',
     results: ['Successfully launched online store within 3 months.', '1,000+ orders in the first month of operation.', 'Positive feedback on user-friendly interface and local delivery efficiency.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'grocery ecommerce india',
+    dataAiHint: 'grocery app',
     serviceCategory: 'Ecommerce Implementation',
   },
 ];
@@ -177,7 +176,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Designed and developed a bespoke CRM platform tailored to their specific logistics workflows, integrating all customer data into a unified system with regional dashboards.',
     results: ['Improved operational efficiency by 25%.', 'Enhanced data accuracy and accessibility for regional teams.', 'Better customer segmentation and targeted marketing capabilities across India.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'crm development india',
+    dataAiHint: 'crm software',
     serviceCategory: 'Web Development',
   },
   {
@@ -189,7 +188,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Executed a full cloud migration to a local AWS region, modernizing their infrastructure for better scalability, security, and cost-effectiveness, while ensuring data sovereignty.',
     results: ['Reduced IT infrastructure costs by 35%.', 'Achieved 99.99% uptime for users across India.', 'Enhanced data security and compliance with Indian healthcare regulations.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'cloud migration india',
+    dataAiHint: 'cloud server',
     serviceCategory: 'IT Implementation',
   },
   {
@@ -201,7 +200,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Developed and implemented a multilingual content strategy, localizing website content, blog articles, and social media posts into 5 key regional languages. Created culturally relevant marketing campaigns.',
     results: ['40% increase in website traffic from targeted regional markets.', 'Improved user engagement metrics across localized content.', 'Expanded customer base in Tier-2 and Tier-3 cities.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'travel website india',
+    dataAiHint: 'travel blog',
     serviceCategory: 'Content Creation & Localization',
   },
   {
@@ -213,7 +212,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Conducted market research and developed a new brand strategy. Designed a contemporary logo, vibrant visual identity, and packaging that reflected Indian heritage with a modern appeal. Created a digital style guide.',
     results: ['Positive reception of new brand identity from target audience.', 'Reported 15% increase in inquiries from younger demographics.', 'Strengthened brand perception as a modern yet traditional Indian brand.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'indian handloom branding',
+    dataAiHint: 'textile branding',
     serviceCategory: 'Branding & Design Services',
   },
   {
@@ -225,7 +224,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Integrated sales data from multiple sources. Developed a custom Business Intelligence dashboard visualizing key metrics, sales trends by region, top-performing products, and customer purchasing patterns.',
     results: ['Enabled data-backed decision-making for inventory and marketing spend.', 'Identified 2 underperforming regions for targeted marketing efforts.', 'Improved sales forecasting accuracy by 18%.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'fmcg data analytics india',
+    dataAiHint: 'fmcg analytics',
     serviceCategory: 'Data Analytics & BI',
   },
 ];
@@ -237,8 +236,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Priya Sharma',
     clientTitle: 'CEO',
     clientCompany: 'Indus Innovate Solutions',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=IndusInnovate',
-    dataAiHint: 'indian company logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'company logo',
   },
   {
     id: 'testimonial-2',
@@ -246,8 +245,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Rohan Mehra',
     clientTitle: 'COO',
     clientCompany: 'Gyan AI Systems',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=GyanAI',
-    dataAiHint: 'indian tech logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'tech company',
   },
   {
     id: 'testimonial-ecommerce',
@@ -255,8 +254,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Deepak Verma',
     clientTitle: 'Owner',
     clientCompany: 'Apna Bazaar Retail',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=ApnaBazaar',
-    dataAiHint: 'indian retail logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'retail brand',
   },
   {
     id: 'testimonial-content',
@@ -264,8 +263,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Ravi Kumar',
     clientTitle: 'Marketing Head',
     clientCompany: 'BharatConnect App',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=BharatConnect',
-    dataAiHint: 'indian app logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'app icon',
   },
   {
     id: 'testimonial-branding',
@@ -273,8 +272,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Sunita Patel',
     clientTitle: 'Director',
     clientCompany: 'Bharat Handlooms Co-operative',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=BharatHandlooms',
-    dataAiHint: 'indian cooperative logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'brand mark',
   },
   {
     id: 'testimonial-data',
@@ -282,8 +281,8 @@ export const testimonials: Testimonial[] = [
     clientName: 'Arjun Desai',
     clientTitle: 'Sales Director',
     clientCompany: 'SpiceBox Foods',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=SpiceBox',
-    dataAiHint: 'indian food company logo',
+    clientLogoUrl: 'https://placehold.co/100x100.png',
+    dataAiHint: 'food brand',
   },
 ];
 
@@ -294,7 +293,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Digital Strategist',
     bio: 'Ananya has over 10 years of experience in crafting and executing successful digital marketing campaigns for diverse clients across India.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian professional woman',
+    dataAiHint: 'professional woman',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
   {
@@ -303,7 +302,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Head of AI Development',
     bio: 'Vikram is a visionary in AI and machine learning, dedicated to developing innovative solutions that drive business value for Indian enterprises.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian technology expert man',
+    dataAiHint: 'tech expert',
     socialLinks: [{ platform: 'linkedin', url: '#' }, { platform: 'twitter', url: '#' }],
   },
   {
@@ -312,7 +311,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Ecommerce Consultant',
     bio: 'Aisha specializes in building scalable and user-friendly e-commerce solutions tailored for the Indian market, from startups to established brands.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian ecommerce expert woman',
+    dataAiHint: 'ecommerce expert',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
   {
@@ -321,7 +320,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Senior Web Architect',
     bio: 'Divya specializes in building scalable and performant web applications with a focus on user experience and modern technologies for the Indian market.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian developer woman',
+    dataAiHint: 'software developer',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
   {
@@ -330,7 +329,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Content & Localization Strategist',
     bio: 'Priya is passionate about crafting narratives that resonate. She has extensive experience in creating multilingual content strategies for the diverse Indian market.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian content writer woman',
+    dataAiHint: 'content writer',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
   {
@@ -339,7 +338,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Creative Director (Branding & Design)',
     bio: 'Rohan leads our creative team, bringing over 12 years of experience in building impactful brand identities and design strategies for businesses targeting the Indian consumer.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian creative director man',
+    dataAiHint: 'creative director',
     socialLinks: [{ platform: 'linkedin', url: '#'}, { platform: 'instagram', url: '#' }],
   },
   {
@@ -348,7 +347,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Data Analyst (BI)',
     bio: 'Meera excels at transforming complex datasets into actionable insights. She helps Indian businesses leverage data for strategic decision-making and growth.',
     imageUrl: 'https://placehold.co/300x300.png',
-    dataAiHint: 'indian data analyst woman',
+    dataAiHint: 'data analyst',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
 ];
@@ -363,7 +362,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Ananya Sharma',
     publishDate: '2024-07-15',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'seo analytics india',
+    dataAiHint: 'seo analytics',
     category: 'Digital Marketing',
   },
   {
@@ -375,7 +374,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Vikram Singh',
     publishDate: '2024-07-10',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'ai business india',
+    dataAiHint: 'ai business',
     category: 'AI & Automation',
   },
   {
@@ -387,7 +386,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Aisha Khan',
     publishDate: '2024-07-20',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'ecommerce trends india',
+    dataAiHint: 'ecommerce trends',
     category: 'Ecommerce Implementation',
   },
   {
@@ -399,7 +398,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Priya Nair',
     publishDate: '2024-07-28',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'indian languages communication',
+    dataAiHint: 'language communication',
     category: 'Content Creation & Localization',
   },
   {
@@ -411,7 +410,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Rohan Joshi',
     publishDate: '2024-08-05',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'branding strategy india',
+    dataAiHint: 'brand strategy',
     category: 'Branding & Design Services',
   },
   {
@@ -423,7 +422,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Meera Krishnan',
     publishDate: '2024-08-12',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'smb data analytics india',
+    dataAiHint: 'smb analytics',
     category: 'Data Analytics & BI',
   },
 ];
