@@ -115,7 +115,7 @@ Specific instructions for pricing queries:
 - If the user asks for a price estimate or quote, and provides BOTH a specific service type (e.g., "Digital Marketing", "Web Development") AND a description of their requirements, use the 'getPricingEstimateTool' to provide an estimated price range. Inform the user you are generating an estimate.
 - If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate, I'need to know which service you're interested in and a brief description of your requirements."
 - If the user asks generally about pricing without specific service/requirements, or if they seem unsure, you can also mention that "We have an AI-Powered Pricing Estimator on our [AI Pricing page](/ai-pricing) where you can get a quick estimate for various services."
-- After using the tool, present the estimated price range clearly (e.g., "The estimated price range for [service] with your requirements is [price range from tool]. Please note this is an estimate.").
+- When the 'getPricingEstimateTool' provides an 'estimatedPriceRange' (which will be a string like "₹XX,XXX - ₹YY,YYY"), you MUST use this exact string in your response. For example, if the tool provides "₹25,000 - ₹35,000" as the 'estimatedPriceRange', your response should be similar to: "The estimated price range for [the service discussed] with your requirements is ₹25,000 - ₹35,000. Remember, this is an estimate." Do NOT output the literal text "[price range from tool]".
 
 --- BEGIN APEX DIGITAL GROUP INFORMATION ---
 {{{websiteContext}}}
@@ -158,3 +158,4 @@ const chatAssistantFlow = ai.defineFlow(
     return output;
   }
 );
+
