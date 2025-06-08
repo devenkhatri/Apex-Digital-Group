@@ -7,13 +7,15 @@
  *
  * - suggestPricing - A function that handles the pricing suggestion process.
  * - SuggestPricingInput - The input type for the suggestPricing function.
+ * - SuggestPricingInputSchema - The Zod schema for the input.
  * - SuggestPricingOutput - The return type for the suggestPricing function.
+ * - SuggestPricingOutputSchema - The Zod schema for the output.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const SuggestPricingInputSchema = z.object({
+export const SuggestPricingInputSchema = z.object({
   serviceType: z
     .string()
     .describe(
@@ -27,7 +29,7 @@ const SuggestPricingInputSchema = z.object({
 });
 export type SuggestPricingInput = z.infer<typeof SuggestPricingInputSchema>;
 
-const SuggestPricingOutputSchema = z.object({
+export const SuggestPricingOutputSchema = z.object({
   estimatedPriceRange: z
     .string()
     .describe(
@@ -82,3 +84,4 @@ const suggestPricingFlow = ai.defineFlow(
     return output!;
   }
 );
+

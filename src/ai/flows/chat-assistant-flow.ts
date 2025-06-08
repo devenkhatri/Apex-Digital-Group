@@ -11,6 +11,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { services, testimonials, teamMembers, blogPosts, portfolioProjects } from '@/data/mock';
+import { suggestPricing, SuggestPricingInputSchema, SuggestPricingOutputSchema } from './suggest-pricing';
 
 const ChatMessageSchema = z.object({
   sender: z.enum(['user', 'bot']),
@@ -46,8 +47,8 @@ function getWebsiteContext(): string {
   });
   context += "Detailed service info is available at /services and individual service pages like /services/digital-marketing.\n\n";
 
-  context += "## AI Pricing Estimator:\n";
-  context += "Apex Digital Group has an AI-Powered Pricing Estimator tool. Users can select a service and describe requirements to get an instant price estimate in Indian Rupees (₹). This is an estimate; final pricing may vary. Access it at /ai-pricing.\n\n";
+  context += "## AI Pricing Estimator Tool (Separate Page):\n";
+  context += "Apex Digital Group has an AI-Powered Pricing Estimator tool available on the website at /ai-pricing. Users can select a service and describe requirements to get an instant price estimate. This tool is separate from this chat.\n\n";
 
   context += "## Portfolio Highlights:\n";
   context += `We have a portfolio of successful projects. Examples: "${portfolioProjects[0]?.title || 'E-commerce Boost'}" and "${portfolioProjects[1]?.title || 'AI Customer Support'}". Explore all projects at /portfolio.\n\n`;
@@ -74,6 +75,20 @@ function getWebsiteContext(): string {
   return context;
 }
 
+const getPricingEstimateTool = ai.defineTool(
+  {
+    name: 'getPricingEstimateTool',
+    description: 'Use this tool to get an estimated price range for a specific Apex Digital Group service ONLY when the user provides BOTH the service type AND a description of their requirements. If either is missing, ask the user to provide them first. Always present the price in Indian Rupees (₹).',
+    inputSchema: SuggestPricingInputSchema,
+    outputSchema: SuggestPricingOutputSchema,
+  },
+  async (input) => {
+    // This calls the existing suggestPricing flow
+    return await suggestPricing(input);
+  }
+);
+
+
 export async function chatWithAssistant(input: ChatAssistantInput): Promise<ChatAssistantOutput> {
   return chatAssistantFlow(input);
 }
@@ -84,11 +99,18 @@ const prompt = ai.definePrompt({
   name: 'chatAssistantPrompt',
   input: {schema: ChatAssistantInputSchema},
   output: {schema: ChatAssistantOutputSchema},
+  tools: [getPricingEstimateTool],
   prompt: `You are a friendly, helpful, and concise AI assistant for Apex Digital Group, a digital agency in India.
 Your primary task is to answer user questions based *only* on the Apex Digital Group Information provided below.
 If the information is not available in the context, politely state that you don't have that specific detail and suggest contacting the company or visiting a relevant page if applicable.
 When discussing pricing, always use Indian Rupees (₹).
 When referring to a page, try to use the markdown format [Page Name](/actual-path). For example, "You can learn more on our [Services page](/services)." or "Visit our [Contact Us page](/contact) for more." If you just mention a path like "/about", ensure it's clearly identifiable as a path (e.g., preceded by a space and not part of another word). Always provide the full path starting with a forward slash.
+
+Specific instructions for pricing queries:
+- If the user asks for a price estimate or quote, and provides BOTH a specific service type (e.g., "Digital Marketing", "Web Development") AND a description of their requirements, use the 'getPricingEstimateTool' to provide an estimated price range. Inform the user you are generating an estimate.
+- If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate, I need to know which service you're interested in and a brief description of your requirements."
+- If the user asks generally about pricing without specific service/requirements, or if they seem unsure, you can also mention that "We have an AI-Powered Pricing Estimator on our [AI Pricing page](/ai-pricing) where you can get a quick estimate for various services."
+- After using the tool, present the estimated price range clearly (e.g., "The estimated price range for [service] with your requirements is [price range from tool]. Please note this is an estimate.").
 
 --- BEGIN APEX DIGITAL GROUP INFORMATION ---
 {{{websiteContext}}}
@@ -124,7 +146,6 @@ const chatAssistantFlow = ai.defineFlow(
     outputSchema: ChatAssistantOutputSchema,
   },
   async (input) => {
-    // Inject the static website context along with dynamic inputs from the user
     const {output} = await prompt({ ...input, websiteContext: staticWebsiteContext }); 
     if (!output) {
       return { botResponse: "I'm sorry, I couldn't generate a response right now. Please try asking something else or try again later." };
@@ -132,3 +153,4 @@ const chatAssistantFlow = ai.defineFlow(
     return output;
   }
 );
+
