@@ -1,6 +1,6 @@
 
 import type { Service, CaseStudy, Testimonial, TeamMember, BlogPost, ClientMetric } from '@/types';
-import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart, Languages, FileText } from 'lucide-react'; // Added Languages, FileText
+import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart, Languages, FileText, Palette, LineChart } from 'lucide-react'; // Added Palette, LineChart
 
 export const services: Service[] = [
   {
@@ -32,7 +32,7 @@ export const services: Service[] = [
       { name: 'Process Automation', description: 'Streamline repetitive tasks and improve workflows.' },
       { name: 'AI Integration', description: 'Embed AI capabilities into your existing systems.' },
       { name: 'Machine Learning Solutions', description: 'Develop custom ML models for predictive analytics.' },
-      { name: 'Data Analytics', description: 'Unlock insights from your data to drive business strategy.' },
+      // Data Analytics is now part of a dedicated service
     ],
   },
   {
@@ -47,7 +47,7 @@ export const services: Service[] = [
     subServices: [
       { name: 'Custom Website Development', description: 'Tailor-made websites that reflect your brand and goals.' },
       { name: 'Mobile Apps', description: 'Develop engaging mobile applications for iOS and Android.' },
-      { name: 'UI/UX Design', description: 'Create intuitive and visually appealing user interfaces.' },
+      { name: 'UI/UX Design (Web specific)', description: 'Create intuitive and visually appealing user interfaces for web platforms.' },
     ],
   },
   {
@@ -88,7 +88,7 @@ export const services: Service[] = [
     slug: '/services/content-localization',
     briefDescription: 'Engaging content tailored for diverse Indian audiences.',
     description: 'Craft compelling content and adapt it for various regional languages and cultural contexts across India. We offer copywriting, blog writing, video content, and translation services to connect with your target audience effectively.',
-    icon: Languages, // Using Languages icon
+    icon: Languages,
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'content writing india',
     subServices: [
@@ -96,6 +96,38 @@ export const services: Service[] = [
       { name: 'Blog & Article Writing', description: 'Develop informative and engaging blog posts and articles to build authority.' },
       { name: 'Video Content Creation', description: 'Produce engaging video content for social media, websites, and marketing campaigns.' },
       { name: 'Translation & Localization', description: 'Adapt your content for different Indian languages and cultural nuances.' },
+    ],
+  },
+  {
+    id: 'branding-design',
+    title: 'Branding & Design Services',
+    slug: '/services/branding-design',
+    briefDescription: 'Build a memorable brand identity that resonates with your audience.',
+    description: 'Comprehensive branding and design solutions including brand strategy, logo creation, visual identity systems, marketing collateral, and UI/UX design focused on building strong brand recognition in the Indian market.',
+    icon: Palette,
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'brand identity design',
+    subServices: [
+      { name: 'Brand Strategy & Positioning', description: 'Define your brand’s unique value proposition for the Indian market.' },
+      { name: 'Logo Design & Visual Identity', description: 'Create impactful logos and cohesive brand guidelines.' },
+      { name: 'Marketing Collateral Design', description: 'Design brochures, presentations, and digital assets.' },
+      { name: 'UI/UX for Brand Experience', description: 'Ensure brand consistency across all digital touchpoints.' },
+    ],
+  },
+  {
+    id: 'data-analytics-bi',
+    title: 'Data Analytics & BI',
+    slug: '/services/data-analytics-bi',
+    briefDescription: 'Transform data into actionable insights for strategic growth.',
+    description: 'Leverage the power of your data with our analytics and business intelligence services. We help Indian businesses uncover trends, understand customer behavior, and make informed decisions through custom dashboards and reporting.',
+    icon: LineChart,
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'business intelligence dashboard',
+    subServices: [
+      { name: 'Data Visualization & Dashboards', description: 'Create interactive dashboards to monitor KPIs and track performance.' },
+      { name: 'Customer Insights & Segmentation', description: 'Understand your Indian customer base for targeted strategies.' },
+      { name: 'Market Trend Analysis', description: 'Identify market opportunities and competitive landscapes in India.' },
+      { name: 'Predictive Analytics', description: 'Utilize data models to forecast future outcomes and trends.' },
     ],
   },
 ];
@@ -172,6 +204,30 @@ export const portfolioProjects: PortfolioProject[] = [
     dataAiHint: 'travel website india',
     serviceCategory: 'Content Creation & Localization',
   },
+  {
+    id: 'project-branding-revamp',
+    title: "Revitalizing 'Bharat Handlooms' Brand Identity",
+    slug: '/portfolio/bharat-handlooms-branding',
+    clientName: 'Bharat Handlooms Co-operative',
+    problem: 'Outdated brand image failing to connect with younger Indian consumers and compete with modern retail brands.',
+    solution: 'Conducted market research and developed a new brand strategy. Designed a contemporary logo, vibrant visual identity, and packaging that reflected Indian heritage with a modern appeal. Created a digital style guide.',
+    results: ['Positive reception of new brand identity from target audience.', 'Reported 15% increase in inquiries from younger demographics.', 'Strengthened brand perception as a modern yet traditional Indian brand.'],
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'indian handloom branding',
+    serviceCategory: 'Branding & Design Services',
+  },
+  {
+    id: 'project-bi-dashboard',
+    title: "Data-Driven Growth Strategy for 'SpiceBox Foods'",
+    slug: '/portfolio/spicebox-bi',
+    clientName: 'SpiceBox Foods (FMCG)',
+    problem: 'Lacked clear insights into sales performance across different regions and product categories in India.',
+    solution: 'Integrated sales data from multiple sources. Developed a custom Business Intelligence dashboard visualizing key metrics, sales trends by region, top-performing products, and customer purchasing patterns.',
+    results: ['Enabled data-backed decision-making for inventory and marketing spend.', 'Identified 2 underperforming regions for targeted marketing efforts.', 'Improved sales forecasting accuracy by 18%.'],
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'fmcg data analytics india',
+    serviceCategory: 'Data Analytics & BI',
+  },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -210,6 +266,24 @@ export const testimonials: Testimonial[] = [
     clientCompany: 'BharatConnect App',
     clientLogoUrl: 'https://placehold.co/150x50.png?text=BharatConnect',
     dataAiHint: 'indian app logo',
+  },
+  {
+    id: 'testimonial-branding',
+    quote: "The new brand identity Apex Digital Group created for us is exceptional. It perfectly captures our essence while modernizing our appeal to the Indian youth. We're already seeing a positive impact!",
+    clientName: 'Sunita Patel',
+    clientTitle: 'Director',
+    clientCompany: 'Bharat Handlooms Co-operative',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=BharatHandlooms',
+    dataAiHint: 'indian cooperative logo',
+  },
+  {
+    id: 'testimonial-data',
+    quote: "Understanding our sales data was a challenge until Apex built our BI dashboards. Now we have clear insights into the Indian market, helping us make smarter, faster decisions. Their analytics team is brilliant.",
+    clientName: 'Arjun Desai',
+    clientTitle: 'Sales Director',
+    clientCompany: 'SpiceBox Foods',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=SpiceBox',
+    dataAiHint: 'indian food company logo',
   },
 ];
 
@@ -257,6 +331,24 @@ export const teamMembers: TeamMember[] = [
     bio: 'Priya is passionate about crafting narratives that resonate. She has extensive experience in creating multilingual content strategies for the diverse Indian market.',
     imageUrl: 'https://placehold.co/300x300.png',
     dataAiHint: 'indian content writer woman',
+    socialLinks: [{ platform: 'linkedin', url: '#' }],
+  },
+  {
+    id: 'team-6',
+    name: 'Rohan Joshi',
+    role: 'Creative Director (Branding & Design)',
+    bio: 'Rohan leads our creative team, bringing over 12 years of experience in building impactful brand identities and design strategies for businesses targeting the Indian consumer.',
+    imageUrl: 'https://placehold.co/300x300.png',
+    dataAiHint: 'indian creative director man',
+    socialLinks: [{ platform: 'linkedin', url: '#'}, { platform: 'instagram', url: '#' }],
+  },
+  {
+    id: 'team-7',
+    name: 'Meera Krishnan',
+    role: 'Lead Data Analyst (BI)',
+    bio: 'Meera excels at transforming complex datasets into actionable insights. She helps Indian businesses leverage data for strategic decision-making and growth.',
+    imageUrl: 'https://placehold.co/300x300.png',
+    dataAiHint: 'indian data analyst woman',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
 ];
@@ -310,4 +402,30 @@ export const blogPosts: BlogPost[] = [
     dataAiHint: 'indian languages communication',
     category: 'Content Creation & Localization',
   },
+  {
+    id: 'blog-branding-india',
+    title: 'The Importance of Strong Branding in the Indian Market',
+    slug: '/blog/strong-branding-indian-market',
+    excerpt: 'Discover why a strong brand identity is crucial for success in India\'s diverse and competitive business environment and how to build one.',
+    content: 'This article discusses the unique challenges and opportunities for branding in India, covering cultural relevance, visual appeal, and storytelling for Indian consumers.',
+    author: 'Rohan Joshi',
+    publishDate: '2024-08-05',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'branding strategy india',
+    category: 'Branding & Design Services',
+  },
+  {
+    id: 'blog-data-analytics-smbs',
+    title: 'Unlocking Growth with Data Analytics: A Guide for Indian SMBs',
+    slug: '/blog/data-analytics-indian-smbs',
+    excerpt: 'Learn how Small and Medium Businesses (SMBs) in India can leverage data analytics to gain a competitive edge, optimize operations, and drive growth.',
+    content: 'A practical guide for Indian SMBs on adopting data analytics, covering tools, techniques, and real-world examples of how data insights can transform business outcomes.',
+    author: 'Meera Krishnan',
+    publishDate: '2024-08-12',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'smb data analytics india',
+    category: 'Data Analytics & BI',
+  },
 ];
+
+    
