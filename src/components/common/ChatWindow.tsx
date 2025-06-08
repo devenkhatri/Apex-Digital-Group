@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useState, useRef, useEffect, type FormEvent } from 'react';
+import React, { useState, useRef, useEffect, type FormEvent } from 'react';
+import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,6 +18,48 @@ interface Message {
   sender: 'user' | 'bot';
   timestamp: Date;
 }
+
+const renderMessageWithLinks = (text: string) => {
+  const parts = [];
+  let lastIndex = 0;
+  // Regex to find markdown links like [text](/path) OR simple paths like /page or /page/subpage
+  // (?<!\S) ensures the path is preceded by whitespace or start of string.
+  // (?![^\s.,?!]) ensures the path is followed by whitespace, punctuation, or end of string.
+  const linkRegex = /\[([^\]]+)\]\(([\/\w-]+(?:\/[\w-]+)*)\)|(?<!\S)(\/[\w-]+(?:\/[\w-]+)*)(?![^\s.,?!])/g;
+
+  let match;
+  while ((match = linkRegex.exec(text)) !== null) {
+    // Text before the link
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+
+    if (match[1] && match[2]) { // Markdown link: [text](url)
+      const linkText = match[1];
+      const linkUrl = match[2];
+      parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline">{linkText}</Link>);
+    } else if (match[3]) { // Simple path: /page
+      const linkUrl = match[3];
+      // Ensure simple paths start with a slash and are plausible internal links
+      if (linkUrl.startsWith('/')) {
+         parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline">{linkUrl}</Link>);
+      } else {
+        // If it's not a valid simple path (e.g. doesn't start with /), treat as text
+        parts.push(match[0]);
+      }
+    }
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  // Remaining text after the last link
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  
+  // Wrap each part in a React.Fragment with a unique key
+  return parts.length > 0 ? parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text;
+};
+
 
 const ChatWindow = () => {
   const [inputValue, setInputValue] = useState('');
@@ -42,7 +85,6 @@ const ChatWindow = () => {
   };
   
   useEffect(() => {
-    // Increased timeout slightly to give the DOM more time to update before scrolling
     setTimeout(scrollToBottom, 50);
   }, [messages, isBotTyping]);
 
@@ -127,7 +169,9 @@ const ChatWindow = () => {
                     : "bg-secondary text-secondary-foreground rounded-bl-none"
                 )}
               >
-                <p className="whitespace-pre-wrap">{msg.text}</p>
+                <div className="whitespace-pre-wrap">
+                  {msg.sender === 'bot' ? renderMessageWithLinks(msg.text) : msg.text}
+                </div>
                 <p className={cn(
                   "text-xs mt-1.5",
                   msg.sender === 'user' ? "text-primary-foreground/70 text-right" : "text-muted-foreground text-left"

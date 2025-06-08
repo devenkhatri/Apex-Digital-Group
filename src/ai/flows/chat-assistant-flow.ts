@@ -88,7 +88,7 @@ const prompt = ai.definePrompt({
 Your primary task is to answer user questions based *only* on the Apex Digital Group Information provided below.
 If the information is not available in the context, politely state that you don't have that specific detail and suggest contacting the company or visiting a relevant page if applicable.
 When discussing pricing, always use Indian Rupees (₹).
-Refer users to specific pages like /services, /contact, /ai-pricing, /blog, /portfolio when relevant.
+When referring to a page, try to use the markdown format [Page Name](/actual-path). For example, "You can learn more on our [Services page](/services)." or "Visit our [Contact Us page](/contact) for more." If you just mention a path like "/about", ensure it's clearly identifiable as a path (e.g., preceded by a space and not part of another word). Always provide the full path starting with a forward slash.
 
 --- BEGIN APEX DIGITAL GROUP INFORMATION ---
 {{{websiteContext}}}
