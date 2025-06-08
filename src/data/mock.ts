@@ -11,7 +11,7 @@ export const services: Service[] = [
     description: 'Comprehensive digital marketing services including SEO, SEM, social media, content marketing, and PPC campaigns to boost your online presence and achieve measurable results.',
     icon: BarChart3,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'marketing analytics',
+    dataAiHint: 'digital strategy',
     subServices: [
       { name: 'SEO/SEM', description: 'Optimize your search engine ranking and visibility.' },
       { name: 'Social Media Management', description: 'Engage your audience and build your brand on social platforms.' },
@@ -27,7 +27,7 @@ export const services: Service[] = [
     description: 'Integrate artificial intelligence and automation into your business operations for enhanced efficiency, decision-making, and innovation. We offer process automation, AI integration, machine learning solutions, and data analytics.',
     icon: Bot,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'artificial intelligence',
+    dataAiHint: 'ai technology',
     subServices: [
       { name: 'Process Automation', description: 'Streamline repetitive tasks and improve workflows.' },
       { name: 'AI Integration', description: 'Embed AI capabilities into your existing systems.' },
@@ -42,7 +42,7 @@ export const services: Service[] = [
     description: 'From custom websites to complex e-commerce platforms and mobile apps, our web development services focus on user-centric design and cutting-edge technology to deliver seamless digital experiences.',
     icon: Code2,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'web design',
+    dataAiHint: 'website development',
     subServices: [
       { name: 'Custom Website Development', description: 'Tailor-made websites that reflect your brand and goals.' },
       { name: 'Mobile Apps', description: 'Develop engaging mobile applications for iOS and Android.' },
@@ -57,7 +57,7 @@ export const services: Service[] = [
     description: 'End-to-end e-commerce solutions, from platform selection and custom development to payment gateway integration, inventory management, and user experience optimization for the Indian market.',
     icon: ShoppingCart,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'online store',
+    dataAiHint: 'ecommerce platform',
     subServices: [
       { name: 'Platform Setup & Customization', description: 'Shopify, WooCommerce, or custom e-commerce platform development.' },
       { name: 'Payment Gateway Integration', description: 'Integrate popular Indian payment gateways seamlessly.' },
@@ -73,7 +73,7 @@ export const services: Service[] = [
     description: 'Implementing scalable and secure IT infrastructure, enterprise software solutions, cloud migration strategies, and cybersecurity measures to support your business growth and protect your assets.',
     icon: ShieldCheck,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'server security',
+    dataAiHint: 'it solutions',
     subServices: [
       { name: 'Enterprise Software Solutions', description: 'Deploy and integrate powerful enterprise software.' },
       { name: 'Cloud Migration', description: 'Seamlessly transition your IT infrastructure to the cloud.' },
@@ -89,7 +89,7 @@ export const services: Service[] = [
     description: 'Craft compelling content and adapt it for various regional languages and cultural contexts across India. We offer copywriting, blog writing, video content, and translation services to connect with your target audience effectively.',
     icon: Languages,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'content writing',
+    dataAiHint: 'global content',
     subServices: [
       { name: 'Copywriting & Editing', description: 'Create persuasive and error-free copy for websites, ads, and marketing materials.' },
       { name: 'Blog & Article Writing', description: 'Develop informative and engaging blog posts and articles to build authority.' },
@@ -105,7 +105,7 @@ export const services: Service[] = [
     description: 'Comprehensive branding and design solutions including brand strategy, logo creation, visual identity systems, marketing collateral, and UI/UX design focused on building strong brand recognition in the Indian market.',
     icon: Palette,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'brand identity',
+    dataAiHint: 'creative design',
     subServices: [
       { name: 'Brand Strategy & Positioning', description: 'Define your brand’s unique value proposition for the Indian market.' },
       { name: 'Logo Design & Visual Identity', description: 'Create impactful logos and cohesive brand guidelines.' },
@@ -121,7 +121,7 @@ export const services: Service[] = [
     description: 'Leverage the power of your data with our analytics and business intelligence services. We help Indian businesses uncover trends, understand customer behavior, and make informed decisions through custom dashboards and reporting.',
     icon: LineChart,
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'bi dashboard',
+    dataAiHint: 'data insights',
     subServices: [
       { name: 'Data Visualization & Dashboards', description: 'Create interactive dashboards to monitor KPIs and track performance.' },
       { name: 'Customer Insights & Segmentation', description: 'Understand your Indian customer base for targeted strategies.' },
@@ -160,7 +160,7 @@ export const featuredCaseStudies: CaseStudy[] = [
     solution: 'Developed a custom hyperlocal e-commerce platform with features like quick delivery slots, regional language support, and integration with local payment wallets. Also provided initial digital marketing support to drive adoption.',
     results: ['Successfully launched online store within 3 months.', '1,000+ orders in the first month of operation.', 'Positive feedback on user-friendly interface and local delivery efficiency.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'grocery app',
+    dataAiHint: 'retail app',
     serviceCategory: 'Ecommerce Implementation',
   },
 ];
@@ -188,7 +188,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Executed a full cloud migration to a local AWS region, modernizing their infrastructure for better scalability, security, and cost-effectiveness, while ensuring data sovereignty.',
     results: ['Reduced IT infrastructure costs by 35%.', 'Achieved 99.99% uptime for users across India.', 'Enhanced data security and compliance with Indian healthcare regulations.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'cloud server',
+    dataAiHint: 'cloud technology',
     serviceCategory: 'IT Implementation',
   },
   {
@@ -200,7 +200,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Developed and implemented a multilingual content strategy, localizing website content, blog articles, and social media posts into 5 key regional languages. Created culturally relevant marketing campaigns.',
     results: ['40% increase in website traffic from targeted regional markets.', 'Improved user engagement metrics across localized content.', 'Expanded customer base in Tier-2 and Tier-3 cities.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'travel blog',
+    dataAiHint: 'digital travel',
     serviceCategory: 'Content Creation & Localization',
   },
   {
@@ -212,7 +212,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Conducted market research and developed a new brand strategy. Designed a contemporary logo, vibrant visual identity, and packaging that reflected Indian heritage with a modern appeal. Created a digital style guide.',
     results: ['Positive reception of new brand identity from target audience.', 'Reported 15% increase in inquiries from younger demographics.', 'Strengthened brand perception as a modern yet traditional Indian brand.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'textile branding',
+    dataAiHint: 'artisan brand',
     serviceCategory: 'Branding & Design Services',
   },
   {
@@ -224,7 +224,7 @@ export const portfolioProjects: PortfolioProject[] = [
     solution: 'Integrated sales data from multiple sources. Developed a custom Business Intelligence dashboard visualizing key metrics, sales trends by region, top-performing products, and customer purchasing patterns.',
     results: ['Enabled data-backed decision-making for inventory and marketing spend.', 'Identified 2 underperforming regions for targeted marketing efforts.', 'Improved sales forecasting accuracy by 18%.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'fmcg analytics',
+    dataAiHint: 'market analytics',
     serviceCategory: 'Data Analytics & BI',
   },
 ];
@@ -398,7 +398,7 @@ export const blogPosts: BlogPost[] = [
     author: 'Priya Nair',
     publishDate: '2024-07-28',
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'language communication',
+    dataAiHint: 'multilingual content',
     category: 'Content Creation & Localization',
   },
   {
@@ -426,5 +426,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Data Analytics & BI',
   },
 ];
+
+    
 
     
