@@ -26,20 +26,13 @@ const ChatWindow = () => {
       timestamp: new Date(),
     }
   ]);
-  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref for the content div
+  const messagesContainerRef = useRef<HTMLDivElement>(null); // Renamed for clarity
 
   const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      const contentDiv = messagesEndRef.current;
-      // The ScrollArea's viewport is the immediate parent of the contentDiv if structured simply
-      const scrollableContainer = contentDiv.parentElement as HTMLElement | null;
-      if (scrollableContainer && scrollableContainer.classList.contains('!flex')) { // Heuristic: Radix Viewport has !flex
-         scrollableContainer.scrollTop = contentDiv.scrollHeight;
-      } else if (scrollableContainer && scrollableContainer.parentElement && scrollableContainer.parentElement.classList.contains('!flex')) {
-        // Sometimes the direct parent isn't the viewport, but the grandparent is (e.g. due to Radix structure)
-        scrollableContainer.parentElement.scrollTop = contentDiv.scrollHeight;
-      } else if (contentDiv.parentElement) { // Fallback to scrolling the direct parent if specific viewport not found
-        contentDiv.parentElement.scrollTop = contentDiv.scrollHeight;
+    if (messagesContainerRef.current) {
+      const viewport = messagesContainerRef.current.parentElement; // This should be the ScrollArea Viewport
+      if (viewport) {
+        viewport.scrollTop = viewport.scrollHeight;
       }
     }
   };
@@ -77,13 +70,8 @@ const ChatWindow = () => {
 
   return (
     <div className="flex flex-col h-[calc(70vh-5rem)] max-h-[500px] bg-card">
-      <ScrollArea className="flex-grow">
-        {/*
-          Removed h-full and overflow-y-auto from this div.
-          ScrollArea will manage scrolling for this content.
-          The ref is now messagesEndRef.
-        */}
-        <div ref={messagesEndRef} className="p-4 space-y-4">
+      <ScrollArea className="flex-grow min-h-0"> {/* Added min-h-0 */}
+        <div ref={messagesContainerRef} className="p-4 space-y-4">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -126,10 +114,6 @@ const ChatWindow = () => {
           ))}
         </div>
       </ScrollArea>
-      {/*
-        Removed sticky bottom-0 from the form.
-        In a flex-col layout, it will naturally be at the bottom.
-      */}
       <form onSubmit={handleSendMessage} className="border-t p-3 flex items-center gap-2.5 bg-background">
         <Input
           type="text"
