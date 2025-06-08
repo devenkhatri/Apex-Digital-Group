@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -17,7 +18,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const formSchema = z.object({
   serviceType: z.string().min(1, { message: "Please select a service type." }),
-  requirements: z.string().min(50, { message: "Please provide detailed requirements (at least 50 characters)." }).max(2000),
+  requirements: z.string().min(20, { message: "Please provide detailed requirements (at least 20 characters)." }).max(2000),
 });
 
 type FormData = z.infer<typeof formSchema>;
