@@ -126,7 +126,7 @@ const AIPricingTool = () => {
               <Alert variant="default" className="bg-accent/10 border-accent text-accent-foreground">
                  <Wand2 className="h-5 w-5 text-primary mr-2" />
                 <AlertTitle className="font-headline text-primary">Estimated Price Range</AlertTitle>
-                <AlertDescription className="text-lg font-semibold">
+                <AlertDescription className="text-lg font-semibold text-primary">
                   {pricingResult.estimatedPriceRange}
                 </AlertDescription>
                  <p className="text-xs mt-2 text-muted-foreground">This is an AI-generated estimate. Actual costs may vary.</p>
