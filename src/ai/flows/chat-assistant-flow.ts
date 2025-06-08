@@ -11,7 +11,12 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { services, testimonials, teamMembers, blogPosts, portfolioProjects } from '@/data/mock';
-import { suggestPricing, SuggestPricingInputSchema, SuggestPricingOutputSchema } from './suggest-pricing';
+import { suggestPricing } from './suggest-pricing'; // Keep this to call the function
+import { 
+  SuggestPricingInputSchema, // Import schema for tool definition
+  type SuggestPricingInput,    // Import type for type safety
+  SuggestPricingOutputSchema  // Import schema for tool definition
+} from '@/ai/schemas/pricing-schemas'; // Import from the new central schema file
 
 const ChatMessageSchema = z.object({
   sender: z.enum(['user', 'bot']),
@@ -82,7 +87,7 @@ const getPricingEstimateTool = ai.defineTool(
     inputSchema: SuggestPricingInputSchema,
     outputSchema: SuggestPricingOutputSchema,
   },
-  async (input) => {
+  async (input: SuggestPricingInput) => { // Ensure input is correctly typed here
     // This calls the existing suggestPricing flow
     return await suggestPricing(input);
   }
@@ -108,7 +113,7 @@ When referring to a page, try to use the markdown format [Page Name](/actual-pat
 
 Specific instructions for pricing queries:
 - If the user asks for a price estimate or quote, and provides BOTH a specific service type (e.g., "Digital Marketing", "Web Development") AND a description of their requirements, use the 'getPricingEstimateTool' to provide an estimated price range. Inform the user you are generating an estimate.
-- If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate, I need to know which service you're interested in and a brief description of your requirements."
+- If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate, I'need to know which service you're interested in and a brief description of your requirements."
 - If the user asks generally about pricing without specific service/requirements, or if they seem unsure, you can also mention that "We have an AI-Powered Pricing Estimator on our [AI Pricing page](/ai-pricing) where you can get a quick estimate for various services."
 - After using the tool, present the estimated price range clearly (e.g., "The estimated price range for [service] with your requirements is [price range from tool]. Please note this is an estimate.").
 
@@ -153,4 +158,3 @@ const chatAssistantFlow = ai.defineFlow(
     return output;
   }
 );
-

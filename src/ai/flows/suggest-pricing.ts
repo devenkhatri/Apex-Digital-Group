@@ -7,36 +7,18 @@
  *
  * - suggestPricing - A function that handles the pricing suggestion process.
  * - SuggestPricingInput - The input type for the suggestPricing function.
- * - SuggestPricingInputSchema - The Zod schema for the input.
  * - SuggestPricingOutput - The return type for the suggestPricing function.
- * - SuggestPricingOutputSchema - The Zod schema for the output.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {
+  SuggestPricingInputSchema,
+  type SuggestPricingInput,
+  SuggestPricingOutputSchema,
+  type SuggestPricingOutput
+} from '@/ai/schemas/pricing-schemas';
 
-export const SuggestPricingInputSchema = z.object({
-  serviceType: z
-    .string()
-    .describe(
-      'The type of service for which the pricing is being requested (e.g., Digital Marketing, AI & Automation, Web Development, IT Implementation).'
-    ),
-  requirements: z
-    .string()
-    .describe(
-      'A detailed description of the clients specific requirements for the selected service.'
-    ),
-});
-export type SuggestPricingInput = z.infer<typeof SuggestPricingInputSchema>;
-
-export const SuggestPricingOutputSchema = z.object({
-  estimatedPriceRange: z
-    .string()
-    .describe(
-      'An estimated price range for the requested service in Indian Rupees (INR), based on the provided requirements. Please include ONLY the INR currency symbol (₹), for example: "₹50,000 - ₹75,000".'
-    ),
-});
-export type SuggestPricingOutput = z.infer<typeof SuggestPricingOutputSchema>;
+export type { SuggestPricingInput, SuggestPricingOutput };
 
 export async function suggestPricing(input: SuggestPricingInput): Promise<SuggestPricingOutput> {
   return suggestPricingFlow(input);
@@ -84,4 +66,3 @@ const suggestPricingFlow = ai.defineFlow(
     return output!;
   }
 );
-
