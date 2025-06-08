@@ -5,7 +5,7 @@ import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, Bot, UserCircle as UserIcon } from 'lucide-react'; // Using UserCircle as User for clarity
+import { Send, Bot, UserCircle as UserIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
@@ -26,16 +26,27 @@ const ChatWindow = () => {
       timestamp: new Date(),
     }
   ]);
-  const scrollViewportRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref for the content div
 
   const scrollToBottom = () => {
-    if (scrollViewportRef.current) {
-      scrollViewportRef.current.scrollTop = scrollViewportRef.current.scrollHeight;
+    if (messagesEndRef.current) {
+      const contentDiv = messagesEndRef.current;
+      // The ScrollArea's viewport is the immediate parent of the contentDiv if structured simply
+      const scrollableContainer = contentDiv.parentElement as HTMLElement | null;
+      if (scrollableContainer && scrollableContainer.classList.contains('!flex')) { // Heuristic: Radix Viewport has !flex
+         scrollableContainer.scrollTop = contentDiv.scrollHeight;
+      } else if (scrollableContainer && scrollableContainer.parentElement && scrollableContainer.parentElement.classList.contains('!flex')) {
+        // Sometimes the direct parent isn't the viewport, but the grandparent is (e.g. due to Radix structure)
+        scrollableContainer.parentElement.scrollTop = contentDiv.scrollHeight;
+      } else if (contentDiv.parentElement) { // Fallback to scrolling the direct parent if specific viewport not found
+        contentDiv.parentElement.scrollTop = contentDiv.scrollHeight;
+      }
     }
   };
-
+  
   useEffect(() => {
-    scrollToBottom();
+    // A brief timeout can help ensure the DOM has updated before scrolling
+    setTimeout(scrollToBottom, 0);
   }, [messages]);
 
   const handleSendMessage = (e?: FormEvent<HTMLFormElement>) => {
@@ -67,7 +78,12 @@ const ChatWindow = () => {
   return (
     <div className="flex flex-col h-[calc(70vh-5rem)] max-h-[500px] bg-card">
       <ScrollArea className="flex-grow">
-        <div ref={scrollViewportRef} className="h-full overflow-y-auto p-4 space-y-4">
+        {/*
+          Removed h-full and overflow-y-auto from this div.
+          ScrollArea will manage scrolling for this content.
+          The ref is now messagesEndRef.
+        */}
+        <div ref={messagesEndRef} className="p-4 space-y-4">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -110,7 +126,11 @@ const ChatWindow = () => {
           ))}
         </div>
       </ScrollArea>
-      <form onSubmit={handleSendMessage} className="border-t p-3 flex items-center gap-2.5 bg-background sticky bottom-0">
+      {/*
+        Removed sticky bottom-0 from the form.
+        In a flex-col layout, it will naturally be at the bottom.
+      */}
+      <form onSubmit={handleSendMessage} className="border-t p-3 flex items-center gap-2.5 bg-background">
         <Input
           type="text"
           placeholder="Type your message..."
