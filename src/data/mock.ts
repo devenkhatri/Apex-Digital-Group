@@ -1,6 +1,6 @@
 
 import type { Service, CaseStudy, Testimonial, TeamMember, BlogPost, ClientMetric } from '@/types';
-import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart } from 'lucide-react';
+import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart, Languages, FileText } from 'lucide-react'; // Added Languages, FileText
 
 export const services: Service[] = [
   {
@@ -82,6 +82,22 @@ export const services: Service[] = [
       { name: 'Cybersecurity', description: 'Protect your digital assets with advanced security measures.' },
     ],
   },
+  {
+    id: 'content-localization',
+    title: 'Content Creation & Localization',
+    slug: '/services/content-localization',
+    briefDescription: 'Engaging content tailored for diverse Indian audiences.',
+    description: 'Craft compelling content and adapt it for various regional languages and cultural contexts across India. We offer copywriting, blog writing, video content, and translation services to connect with your target audience effectively.',
+    icon: Languages, // Using Languages icon
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'content writing india',
+    subServices: [
+      { name: 'Copywriting & Editing', description: 'Create persuasive and error-free copy for websites, ads, and marketing materials.' },
+      { name: 'Blog & Article Writing', description: 'Develop informative and engaging blog posts and articles to build authority.' },
+      { name: 'Video Content Creation', description: 'Produce engaging video content for social media, websites, and marketing campaigns.' },
+      { name: 'Translation & Localization', description: 'Adapt your content for different Indian languages and cultural nuances.' },
+    ],
+  },
 ];
 
 export const clientMetrics: ClientMetric[] = [
@@ -144,6 +160,18 @@ export const portfolioProjects: PortfolioProject[] = [
     dataAiHint: 'cloud migration india',
     serviceCategory: 'IT Implementation',
   },
+  {
+    id: 'project-content-strategy',
+    title: 'Multilingual Content Strategy for ApnaSafar Travel',
+    slug: '/portfolio/apnasafar-content',
+    clientName: 'ApnaSafar Travel',
+    problem: 'Limited reach in non-Hindi speaking regions of India due to English-only content.',
+    solution: 'Developed and implemented a multilingual content strategy, localizing website content, blog articles, and social media posts into 5 key regional languages. Created culturally relevant marketing campaigns.',
+    results: ['40% increase in website traffic from targeted regional markets.', 'Improved user engagement metrics across localized content.', 'Expanded customer base in Tier-2 and Tier-3 cities.'],
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'travel website india',
+    serviceCategory: 'Content Creation & Localization',
+  },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -173,6 +201,15 @@ export const testimonials: Testimonial[] = [
     clientCompany: 'Apna Bazaar Retail',
     clientLogoUrl: 'https://placehold.co/150x50.png?text=ApnaBazaar',
     dataAiHint: 'indian retail logo',
+  },
+  {
+    id: 'testimonial-content',
+    quote: "Apex's localization services helped us connect with our regional customers in a way we never could before. Our engagement in non-English markets has skyrocketed! Their team understood the cultural nuances perfectly.",
+    clientName: 'Ravi Kumar',
+    clientTitle: 'Marketing Head',
+    clientCompany: 'BharatConnect App',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=BharatConnect',
+    dataAiHint: 'indian app logo',
   },
 ];
 
@@ -213,6 +250,15 @@ export const teamMembers: TeamMember[] = [
     dataAiHint: 'indian developer woman',
     socialLinks: [{ platform: 'linkedin', url: '#' }],
   },
+  {
+    id: 'team-5',
+    name: 'Priya Nair',
+    role: 'Lead Content & Localization Strategist',
+    bio: 'Priya is passionate about crafting narratives that resonate. She has extensive experience in creating multilingual content strategies for the diverse Indian market.',
+    imageUrl: 'https://placehold.co/300x300.png',
+    dataAiHint: 'indian content writer woman',
+    socialLinks: [{ platform: 'linkedin', url: '#' }],
+  },
 ];
 
 export const blogPosts: BlogPost[] = [
@@ -251,5 +297,17 @@ export const blogPosts: BlogPost[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'ecommerce trends india',
     category: 'Ecommerce Implementation',
+  },
+  {
+    id: 'blog-vernacular-content',
+    title: 'The Power of Vernacular: Reaching India\'s Next Billion Users',
+    slug: '/blog/vernacular-content-india',
+    excerpt: 'Unlock immense growth potential by communicating with your Indian audience in their native language. Learn why vernacular content is key.',
+    content: 'Detailed insights into the importance of linguistic diversity in India, strategies for effective localization, and case studies of brands succeeding with vernacular content.',
+    author: 'Priya Nair',
+    publishDate: '2024-07-28',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'indian languages communication',
+    category: 'Content Creation & Localization',
   },
 ];
