@@ -19,49 +19,11 @@ interface Message {
   timestamp: Date;
 }
 
-const renderMessageWithLinks = (text: string) => {
-  const parts = [];
-  let lastIndex = 0;
-  // Regex to find markdown links like [text](/path) OR simple paths like /page or /page/subpage
-  // (?<!\S) ensures the path is preceded by whitespace or start of string.
-  // (?![^\s.,?!]) ensures the path is followed by whitespace, punctuation, or end of string.
-  const linkRegex = /\[([^\]]+)\]\(([\/\w-]+(?:\/[\w-]+)*)\)|(?<!\S)(\/[\w-]+(?:\/[\w-]+)*)(?![^\s.,?!])/g;
+interface ChatWindowProps {
+  onCloseChat?: () => void;
+}
 
-  let match;
-  while ((match = linkRegex.exec(text)) !== null) {
-    // Text before the link
-    if (match.index > lastIndex) {
-      parts.push(text.substring(lastIndex, match.index));
-    }
-
-    if (match[1] && match[2]) { // Markdown link: [text](url)
-      const linkText = match[1];
-      const linkUrl = match[2];
-      parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline">{linkText}</Link>);
-    } else if (match[3]) { // Simple path: /page
-      const linkUrl = match[3];
-      // Ensure simple paths start with a slash and are plausible internal links
-      if (linkUrl.startsWith('/')) {
-         parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline">{linkUrl}</Link>);
-      } else {
-        // If it's not a valid simple path (e.g. doesn't start with /), treat as text
-        parts.push(match[0]);
-      }
-    }
-    lastIndex = linkRegex.lastIndex;
-  }
-
-  // Remaining text after the last link
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
-  }
-  
-  // Wrap each part in a React.Fragment with a unique key
-  return parts.length > 0 ? parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text;
-};
-
-
-const ChatWindow = () => {
+const ChatWindow = ({ onCloseChat }: ChatWindowProps) => {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -74,6 +36,52 @@ const ChatWindow = () => {
   const [isBotTyping, setIsBotTyping] = useState(false);
   const [chatError, setChatError] = useState<string | null>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  const renderMessageWithLinks = (text: string) => {
+    const parts = [];
+    let lastIndex = 0;
+    const linkRegex = /\[([^\]]+)\]\(([\/\w-]+(?:\/[\w-]+)*)\)|(?<!\S)(\/[\w-]+(?:\/[\w-]+)*)(?![^\s.,?!])/g;
+
+    let match;
+    while ((match = linkRegex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(text.substring(lastIndex, match.index));
+      }
+
+      const handleLinkClick = () => {
+        if (onCloseChat) {
+          onCloseChat();
+        }
+      };
+
+      if (match[1] && match[2]) { // Markdown link: [text](url)
+        const linkText = match[1];
+        const linkUrl = match[2];
+        // Check if it's an internal link (starts with /)
+        if (linkUrl.startsWith('/')) {
+          parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline" onClick={handleLinkClick}>{linkText}</Link>);
+        } else { // Assume external or mailto, etc.
+          parts.push(<a href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">{linkText}</a>);
+        }
+      } else if (match[3]) { // Simple path: /page
+        const linkUrl = match[3];
+        // Simple paths are assumed internal if they start with /
+        if (linkUrl.startsWith('/')) {
+           parts.push(<Link href={linkUrl} key={`${linkUrl}-${lastIndex}`} className="text-accent hover:underline" onClick={handleLinkClick}>{linkUrl}</Link>);
+        } else {
+          // If it's not a valid simple path (e.g. doesn't start with /), treat as text
+          parts.push(match[0]);
+        }
+      }
+      lastIndex = linkRegex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parts.push(text.substring(lastIndex));
+    }
+    
+    return parts.length > 0 ? parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>) : text;
+  };
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {

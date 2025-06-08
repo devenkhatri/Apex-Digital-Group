@@ -38,7 +38,7 @@ const LiveChatButton = () => {
             We're here to help! Ask us anything or tell us about your project.
           </DialogDescription>
         </DialogHeader>
-        <ChatWindow />
+        <ChatWindow onCloseChat={() => setIsChatOpen(false)} />
       </DialogContent>
     </Dialog>
   );
