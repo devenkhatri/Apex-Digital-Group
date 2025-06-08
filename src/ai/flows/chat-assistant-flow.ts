@@ -53,7 +53,7 @@ function getWebsiteContext(): string {
   context += "Detailed service info is available at /services and individual service pages like /services/digital-marketing.\n\n";
 
   context += "## AI Pricing Estimator Tool (Separate Page):\n";
-  context += "Apex Digital Group has an AI-Powered Pricing Estimator tool available on the website at /ai-pricing. Users can select a service and describe requirements to get an instant price estimate. This tool is separate from this chat.\n\n";
+  context += "Apex Digital Group has an AI-Powered Pricing Estimator tool available on the website at /ai-pricing. Users can select a service and describe requirements to get an instant price estimate and timeline. This tool is separate from this chat.\n\n";
 
   context += "## Portfolio Highlights:\n";
   context += `We have a portfolio of successful projects. Examples: "${portfolioProjects[0]?.title || 'E-commerce Boost'}" and "${portfolioProjects[1]?.title || 'AI Customer Support'}". Explore all projects at /portfolio.\n\n`;
@@ -83,7 +83,7 @@ function getWebsiteContext(): string {
 const getPricingEstimateTool = ai.defineTool(
   {
     name: 'getPricingEstimateTool',
-    description: 'Use this tool to get an estimated price range for a specific Apex Digital Group service ONLY when the user provides BOTH the service type AND a description of their requirements. If either is missing, ask the user to provide them first. Always present the price in Indian Rupees (₹).',
+    description: 'Use this tool to get an estimated price range and timeline for a specific Apex Digital Group service ONLY when the user provides BOTH the service type AND a description of their requirements. If either is missing, ask the user to provide them first. Always present the price in Indian Rupees (₹). The timeline will be a general estimate like "2-4 weeks" or "1-2 months".',
     inputSchema: SuggestPricingInputSchema,
     outputSchema: SuggestPricingOutputSchema,
   },
@@ -112,10 +112,10 @@ When discussing pricing, always use Indian Rupees (₹).
 When referring to a page, try to use the markdown format [Page Name](/actual-path). For example, "You can learn more on our [Services page](/services)." or "Visit our [Contact Us page](/contact) for more." If you just mention a path like "/about", ensure it's clearly identifiable as a path (e.g., preceded by a space and not part of another word). Always provide the full path starting with a forward slash.
 
 Specific instructions for pricing queries:
-- If the user asks for a price estimate or quote, and provides BOTH a specific service type (e.g., "Digital Marketing", "Web Development") AND a description of their requirements, use the 'getPricingEstimateTool' to provide an estimated price range. Inform the user you are generating an estimate.
-- If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate, I'need to know which service you're interested in and a brief description of your requirements."
+- If the user asks for a price estimate or quote, and provides BOTH a specific service type (e.g., "Digital Marketing", "Web Development") AND a description of their requirements, use the 'getPricingEstimateTool' to provide an estimated price range and timeline. Inform the user you are generating an estimate.
+- If the user asks about pricing but does NOT provide both the service type and requirements, ask them to provide these details. For example, say "To give you a price estimate and timeline, I'll need to know which service you're interested in and a brief description of your requirements."
 - If the user asks generally about pricing without specific service/requirements, or if they seem unsure, you can also mention that "We have an AI-Powered Pricing Estimator on our [AI Pricing page](/ai-pricing) where you can get a quick estimate for various services."
-- When the 'getPricingEstimateTool' provides an 'estimatedPriceRange' (which will be a string like "₹XX,XXX - ₹YY,YYY"), you MUST use this exact string in your response. For example, if the tool provides "₹25,000 - ₹35,000" as the 'estimatedPriceRange', your response should be similar to: "The estimated price range for [the service discussed] with your requirements is ₹25,000 - ₹35,000. Remember, this is an estimate." Do NOT output the literal text "[price range from tool]".
+- When the 'getPricingEstimateTool' provides an 'estimatedPriceRange' and 'estimatedTimeline', you MUST use these exact string values in your response. For example, if the tool provides "₹25,000 - ₹35,000" as the 'estimatedPriceRange' and "3-5 weeks" as 'estimatedTimeline', your response should be similar to: "The estimated price range for [the service discussed] with your requirements is ₹25,000 - ₹35,000, and it might take around 3-5 weeks to complete. Remember, these are estimates." Do NOT output the literal text "[price range from tool]" or "[timeline from tool]".
 
 --- BEGIN APEX DIGITAL GROUP INFORMATION ---
 {{{websiteContext}}}

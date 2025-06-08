@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input'; // Not used directly, but Textare
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { services as serviceOptions } from '@/data/mock'; // Use mock services for options
-import { Loader2, Wand2 } from 'lucide-react';
+import { Loader2, Wand2, CalendarClock } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const formSchema = z.object({
@@ -57,10 +57,10 @@ const AIPricingTool = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 font-headline">
           <Wand2 className="h-6 w-6 text-primary" />
-          Get Your Price Estimate
+          Get Your Project Estimate
         </CardTitle>
         <CardDescription>
-          Fill in the details below, and our AI will suggest a price range for your project.
+          Fill in the details below, and our AI will suggest a price range and estimated timeline for your project.
         </CardDescription>
       </CardHeader>
       <Form {...form}>
@@ -113,7 +113,7 @@ const AIPricingTool = () => {
               {isLoading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               ) : (
-                "Suggest Price"
+                "Get Estimate"
               )}
             </Button>
             {error && (
@@ -124,12 +124,28 @@ const AIPricingTool = () => {
             )}
             {pricingResult && !error && (
               <Alert variant="default" className="bg-accent/10 border-accent text-accent-foreground">
-                 <Wand2 className="h-5 w-5 text-primary mr-2" />
-                <AlertTitle className="font-headline text-primary">Estimated Price Range</AlertTitle>
-                <AlertDescription className="text-lg font-semibold text-primary">
-                  {pricingResult.estimatedPriceRange}
-                </AlertDescription>
-                 <p className="text-xs mt-2 text-muted-foreground">This is an AI-generated estimate. Actual costs may vary.</p>
+                <AlertTitle className="font-headline text-primary flex items-center gap-2">
+                   <Wand2 className="h-5 w-5 text-primary" />
+                   AI Generated Estimate
+                </AlertTitle>
+                <div className="mt-3 space-y-2">
+                  <div>
+                    <p className="text-sm font-medium text-primary/80">Estimated Price Range:</p>
+                    <AlertDescription className="text-lg font-semibold text-primary">
+                      {pricingResult.estimatedPriceRange}
+                    </AlertDescription>
+                  </div>
+                  {pricingResult.estimatedTimeline && (
+                    <div>
+                      <p className="text-sm font-medium text-primary/80">Estimated Timeline:</p>
+                      <AlertDescription className="text-base font-semibold text-primary flex items-center gap-1.5">
+                        <CalendarClock className="h-4 w-4 text-primary/90" />
+                        {pricingResult.estimatedTimeline}
+                      </AlertDescription>
+                    </div>
+                  )}
+                </div>
+                 <p className="text-xs mt-3 text-muted-foreground">This is an AI-generated estimate. Actual costs and timeline may vary based on detailed project scope.</p>
               </Alert>
             )}
           </CardFooter>
@@ -140,3 +156,4 @@ const AIPricingTool = () => {
 };
 
 export default AIPricingTool;
+
