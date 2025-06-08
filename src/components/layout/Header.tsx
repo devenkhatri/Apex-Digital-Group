@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -7,7 +8,7 @@ import Logo from '@/components/common/Logo';
 import NavItem from '@/components/layout/NavItem';
 import Container from '@/components/common/Container';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle } from '@/components/ui/sheet';
 import type { NavItemType } from '@/types';
 import { services } from '@/data/mock';
 
@@ -55,9 +56,10 @@ const Header = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs p-0">
-              <div className="flex flex-col h-full">
+            <SheetContent side="right" className="w-full max-w-xs p-0 flex flex-col">
+              {/* Removed the inner div and made SheetContent a flex container */}
                 <div className="flex items-center justify-between p-4 border-b">
+                  <SheetTitle className="sr-only">Main Menu</SheetTitle> {/* Accessible title */}
                   <Logo iconSize={24} textSize="text-xl" />
                   <SheetClose asChild>
                      <Button variant="ghost" size="icon" aria-label="Close menu">
@@ -65,12 +67,11 @@ const Header = () => {
                      </Button>
                   </SheetClose>
                 </div>
-                <nav className="flex-grow p-4 space-y-1">
+                <nav className="flex-grow p-4 space-y-1 overflow-y-auto">
                   {navItems.map((item) => (
                     <NavItem key={item.href} item={item} isMobile onLinkClick={closeMobileMenu} />
                   ))}
                 </nav>
-              </div>
             </SheetContent>
           </Sheet>
         </div>
