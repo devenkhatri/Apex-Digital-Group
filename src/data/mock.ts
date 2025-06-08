@@ -1,6 +1,6 @@
 
 import type { Service, CaseStudy, Testimonial, TeamMember, BlogPost, ClientMetric } from '@/types';
-import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award } from 'lucide-react';
+import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award, ShoppingCart } from 'lucide-react';
 
 export const services: Service[] = [
   {
@@ -46,9 +46,24 @@ export const services: Service[] = [
     dataAiHint: 'web design',
     subServices: [
       { name: 'Custom Website Development', description: 'Tailor-made websites that reflect your brand and goals.' },
-      { name: 'E-commerce Solutions', description: 'Build robust online stores that drive sales.' },
       { name: 'Mobile Apps', description: 'Develop engaging mobile applications for iOS and Android.' },
       { name: 'UI/UX Design', description: 'Create intuitive and visually appealing user interfaces.' },
+    ],
+  },
+  {
+    id: 'ecommerce-implementation',
+    title: 'Ecommerce Implementation',
+    slug: '/services/ecommerce-implementation',
+    briefDescription: 'Launch and scale your online store effectively.',
+    description: 'End-to-end e-commerce solutions, from platform selection and custom development to payment gateway integration, inventory management, and user experience optimization for the Indian market.',
+    icon: ShoppingCart,
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'online store development',
+    subServices: [
+      { name: 'Platform Setup & Customization', description: 'Shopify, WooCommerce, or custom e-commerce platform development.' },
+      { name: 'Payment Gateway Integration', description: 'Integrate popular Indian payment gateways seamlessly.' },
+      { name: 'Inventory Management Solutions', description: 'Efficiently manage your product stock and orders.' },
+      { name: 'Mobile-First Ecommerce Design', description: 'Optimize online stores for Indian mobile users.' },
     ],
   },
   {
@@ -90,16 +105,16 @@ export const featuredCaseStudies: CaseStudy[] = [
     serviceCategory: 'Digital Marketing',
   },
   {
-    id: 'case-study-2',
-    title: 'Automating Customer Support with AI for PaisaGrowth Fintech',
-    slug: '/portfolio/paisagrowth-ai-support',
-    clientName: 'PaisaGrowth Fintech',
-    problem: 'High volume of customer inquiries in multiple Indian languages leading to slow response times and increased operational costs.',
-    solution: 'Developed and integrated an AI-powered chatbot supporting English and Hindi, alongside an automated ticketing system to handle common queries and streamline support workflows.',
-    results: ['40% reduction in customer support response time.', '30% decrease in support operational costs.', 'Improved customer satisfaction scores across diverse user segments.'],
+    id: 'case-study-ecommerce-launch',
+    title: 'Launching KiranaKart Online: A Hyperlocal Ecommerce Success',
+    slug: '/portfolio/kiranakart-online-launch',
+    clientName: 'KiranaKart Local',
+    problem: 'A local grocery chain wanted to establish an online presence to serve customers in their locality and compete with larger e-grocery platforms.',
+    solution: 'Developed a custom hyperlocal e-commerce platform with features like quick delivery slots, regional language support, and integration with local payment wallets. Also provided initial digital marketing support to drive adoption.',
+    results: ['Successfully launched online store within 3 months.', '1,000+ orders in the first month of operation.', 'Positive feedback on user-friendly interface and local delivery efficiency.'],
     imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'ai customer service india',
-    serviceCategory: 'AI & Automation',
+    dataAiHint: 'grocery ecommerce india',
+    serviceCategory: 'Ecommerce Implementation',
   },
 ];
 
@@ -150,6 +165,15 @@ export const testimonials: Testimonial[] = [
     clientLogoUrl: 'https://placehold.co/150x50.png?text=GyanAI',
     dataAiHint: 'indian tech logo',
   },
+  {
+    id: 'testimonial-ecommerce',
+    quote: "Launching our online store with Apex Digital Group was a game-changer for our local business. They understood our needs for the Indian market perfectly and delivered a fantastic e-commerce platform. Our customers love it!",
+    clientName: 'Deepak Verma',
+    clientTitle: 'Owner',
+    clientCompany: 'Apna Bazaar Retail',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=ApnaBazaar',
+    dataAiHint: 'indian retail logo',
+  },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -173,6 +197,15 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 'team-3',
+    name: 'Aisha Khan',
+    role: 'Lead Ecommerce Consultant',
+    bio: 'Aisha specializes in building scalable and user-friendly e-commerce solutions tailored for the Indian market, from startups to established brands.',
+    imageUrl: 'https://placehold.co/300x300.png',
+    dataAiHint: 'indian ecommerce expert woman',
+    socialLinks: [{ platform: 'linkedin', url: '#' }],
+  },
+  {
+    id: 'team-4',
     name: 'Divya Reddy',
     role: 'Senior Web Architect',
     bio: 'Divya specializes in building scalable and performant web applications with a focus on user experience and modern technologies for the Indian market.',
@@ -206,5 +239,17 @@ export const blogPosts: BlogPost[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'ai business india',
     category: 'AI & Automation',
+  },
+  {
+    id: 'blog-ecommerce-trends',
+    title: 'Top Ecommerce Trends for Indian Businesses in 2024',
+    slug: '/blog/ecommerce-trends-india-2024',
+    excerpt: 'Explore the key e-commerce trends that Indian businesses must adopt to succeed in the competitive online marketplace, from D2C to Q-commerce.',
+    content: 'In-depth analysis of rising e-commerce trends in India, including Direct-to-Consumer models, quick commerce, social commerce, and the importance of vernacular content for online stores.',
+    author: 'Aisha Khan',
+    publishDate: '2024-07-20',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'ecommerce trends india',
+    category: 'Ecommerce Implementation',
   },
 ];
