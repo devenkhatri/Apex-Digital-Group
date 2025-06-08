@@ -1,3 +1,4 @@
+
 import type { Service, CaseStudy, Testimonial, TeamMember, BlogPost, ClientMetric } from '@/types';
 import { BarChart3, Bot, Code2, ShieldCheck, Users, TrendingUp, CheckCircle, Award } from 'lucide-react';
 
@@ -133,21 +134,21 @@ export const portfolioProjects: PortfolioProject[] = [
 export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-1',
-    quote: "Apex Digital Group transformed our online presence. Their expertise in digital marketing is unmatched, and we've seen incredible growth since partnering with them.",
-    clientName: 'Jane Doe',
+    quote: "Apex Digital Group completely transformed our online presence. Their understanding of digital marketing is truly top-notch, and we've seen fantastic growth since partnering with them. Very impressive!",
+    clientName: 'Priya Sharma',
     clientTitle: 'CEO',
-    clientCompany: 'Innovatech Solutions',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=Innovatech',
-    dataAiHint: 'company logo',
+    clientCompany: 'TechSolutions India',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=TechSolutions',
+    dataAiHint: 'indian company logo',
   },
   {
     id: 'testimonial-2',
-    quote: "The AI automation solution provided by Apex has streamlined our operations significantly, saving us time and resources. Highly recommended!",
-    clientName: 'John Smith',
+    quote: "The AI automation solution from Apex has made our operations so much smoother, saving us considerable time and resources. We are very happy with their work. Highly recommended!",
+    clientName: 'Rohan Patel',
     clientTitle: 'COO',
-    clientCompany: 'Synergy Corp',
-    clientLogoUrl: 'https://placehold.co/150x50.png?text=Synergy',
-    dataAiHint: 'corporate logo',
+    clientCompany: 'QuantumLeap AI',
+    clientLogoUrl: 'https://placehold.co/150x50.png?text=QuantumLeap',
+    dataAiHint: 'indian tech logo',
   },
 ];
 
