@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import Logo from '@/components/common/Logo';
@@ -30,7 +31,7 @@ const Footer = () => {
           <div>
             <Logo className="text-primary mb-4" />
             <p className="text-sm text-muted-foreground">
-              Apex Digital Group: Driving innovation and results for your business.
+              Apex Digital Group: Driving innovation and results for your business in India.
             </p>
           </div>
           <div>
@@ -46,11 +47,11 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold font-headline mb-4">Contact Us</h3>
+            <h3 className="text-lg font-semibold font-headline mb-4">Contact Us (India)</h3>
             <address className="text-sm not-italic space-y-1 text-muted-foreground">
-              <p>123 Digital Avenue, Tech City, TX 75001</p>
-              <p>Email: <a href="mailto:info@apexdigital.com" className="hover:text-primary">info@apexdigital.com</a></p>
-              <p>Phone: <a href="tel:+1234567890" className="hover:text-primary">(123) 456-7890</a></p>
+              <p>456 Tech Park Road, Cyberabad, Hyderabad 500081</p>
+              <p>Email: <a href="mailto:info@apexdigital.co.in" className="hover:text-primary">info@apexdigital.co.in</a></p>
+              <p>Phone: <a href="tel:+919876543210" className="hover:text-primary">+91 98765 43210</a></p>
             </address>
           </div>
           <div>
@@ -65,7 +66,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Apex Digital Group. All rights reserved.</p>
+          <p>&copy; {currentYear} Apex Digital Group India. All rights reserved.</p>
         </div>
       </Container>
     </footer>

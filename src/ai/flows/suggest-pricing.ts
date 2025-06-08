@@ -3,7 +3,7 @@
 'use server';
 
 /**
- * @fileOverview A pricing suggestion AI agent.
+ * @fileOverview A pricing suggestion AI agent for the Indian market.
  *
  * - suggestPricing - A function that handles the pricing suggestion process.
  * - SuggestPricingInput - The input type for the suggestPricing function.
@@ -31,7 +31,7 @@ const SuggestPricingOutputSchema = z.object({
   estimatedPriceRange: z
     .string()
     .describe(
-      'An estimated price range for the requested service in Indian Rupees (INR), based on the provided requirements. Please include the INR currency symbol (₹).'
+      'An estimated price range for the requested service in Indian Rupees (INR), based on the provided requirements. Please include ONLY the INR currency symbol (₹), for example: "₹50,000 - ₹75,000".'
     ),
 });
 export type SuggestPricingOutput = z.infer<typeof SuggestPricingOutputSchema>;
@@ -44,10 +44,10 @@ const prompt = ai.definePrompt({
   name: 'suggestPricingPrompt',
   input: {schema: SuggestPricingInputSchema},
   output: {schema: SuggestPricingOutputSchema},
-  prompt: `You are an AI pricing assistant for Apex Digital Group, a full-service digital agency catering to the Indian market.
+  prompt: `You are an AI pricing assistant for Apex Digital Group, a full-service digital agency catering exclusively to the Indian market.
 
 You will receive a service type and a description of the client's requirements. Based on this information, you will provide an estimated price range for the service in Indian Rupees (INR).
-IMPORTANT: You MUST use the Indian Rupee symbol (₹) exclusively for currency. Do NOT use "INR", "Rs.", or any other abbreviations. For example, a correct response would be "₹50,000 - ₹75,000".
+IMPORTANT: You MUST use the Indian Rupee symbol (₹) exclusively for currency. Do NOT use "INR", "Rs.", or any other abbreviations or currency names. For example, a correct response would be "₹50,000 - ₹75,000".
 
 Service Type: {{{serviceType}}}
 Requirements: {{{requirements}}}
