@@ -10,7 +10,9 @@ export const services: Service[] = [
     briefDescription: 'Drive growth with data-driven digital marketing strategies.',
     description: 'Comprehensive digital marketing services including SEO, SEM, social media, content marketing, and PPC campaigns to boost your online presence and achieve measurable results.',
     icon: BarChart3,
-    imageUrl: 'https://placehold.co/600x400.png',
+    // Example: Replaced placeholder with a sample data URI.
+    // Use the generateWebsiteImage flow to generate an actual image using the dataAiHint.
+    imageUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
     dataAiHint: 'digital strategy',
     subServices: [
       { name: 'SEO/SEM', description: 'Optimize your search engine ranking and visibility.' },
@@ -426,7 +428,3 @@ export const blogPosts: BlogPost[] = [
     category: 'Data Analytics & BI',
   },
 ];
-
-    
-
-    

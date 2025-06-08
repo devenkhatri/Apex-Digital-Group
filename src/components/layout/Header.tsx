@@ -19,10 +19,10 @@ const navItems: NavItemType[] = [
     href: '/services',
     children: services.map(service => ({ label: service.title, href: service.slug })),
   },
+  { label: 'AI Pricing', href: '/ai-pricing' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'About Us', href: '/about' },
   { label: 'Blog', href: '/blog' },
-  { label: 'AI Pricing', href: '/ai-pricing' },
   { label: 'Contact', href: '/contact' },
 ];
 
