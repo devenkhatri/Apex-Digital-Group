@@ -25,7 +25,7 @@ const HeroSection = () => {
                 Our Services <ChevronRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-8 py-3 text-lg shadow-lg transition-transform hover:scale-105">
+            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-full px-8 py-3 text-lg shadow-lg transition-transform hover:scale-105">
               <Link href="/contact">
                 Get a Quote
               </Link>
