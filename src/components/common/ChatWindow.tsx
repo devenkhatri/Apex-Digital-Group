@@ -42,7 +42,8 @@ const ChatWindow = () => {
   };
   
   useEffect(() => {
-    setTimeout(scrollToBottom, 0);
+    // Increased timeout slightly to give the DOM more time to update before scrolling
+    setTimeout(scrollToBottom, 50);
   }, [messages, isBotTyping]);
 
   const handleSendMessage = async (e?: FormEvent<HTMLFormElement>) => {
@@ -57,24 +58,20 @@ const ChatWindow = () => {
       timestamp: new Date(),
     };
 
-    // Add user message to state immediately
     setMessages(prevMessages => [...prevMessages, userMessage]);
     setInputValue('');
     setIsBotTyping(true);
     setChatError(null);
 
-    // Prepare chat history for the AI (last 5 messages for brevity)
-    // We also add the current user message to this history for the AI to see it in context
     const currentChatHistoryForAI = messages
-      .slice(-4) // get last 4 messages already in state
+      .slice(-4) 
       .map(msg => ({ sender: msg.sender, text: msg.text }));
     
-    currentChatHistoryForAI.push({ sender: 'user', text: userMessageText }); // add current user message
+    currentChatHistoryForAI.push({ sender: 'user', text: userMessageText });
 
     try {
       const aiInput: ChatAssistantInput = {
         userMessage: userMessageText,
-        // Provide the history *before* the current user message
         chatHistory: currentChatHistoryForAI.slice(0, -1), 
       };
       const response = await chatWithAssistant(aiInput);
@@ -91,7 +88,6 @@ const ChatWindow = () => {
       console.error("Error calling AI chat assistant:", error);
       const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
       setChatError(`Sorry, I encountered an issue: ${errorMessage}. Please try again.`);
-      // Optionally add an error message to the chat
       const errorBotResponse: Message = {
         id: `bot-error-${Date.now()}`,
         text: `I'm having trouble connecting right now. Please try asking again in a moment.`,
@@ -190,4 +186,3 @@ const ChatWindow = () => {
 };
 
 export default ChatWindow;
-
