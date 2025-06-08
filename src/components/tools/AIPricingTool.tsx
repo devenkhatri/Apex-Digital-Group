@@ -123,12 +123,12 @@ const AIPricingTool = () => {
             )}
             {pricingResult && !error && (
               <Alert variant="default" className="bg-accent/10 border-accent text-accent-foreground">
-                 <Wand2 className="h-5 w-5 text-accent mr-2" />
-                <AlertTitle className="font-headline text-accent">Estimated Price Range</AlertTitle>
+                 <Wand2 className="h-5 w-5 text-primary mr-2" />
+                <AlertTitle className="font-headline text-primary">Estimated Price Range</AlertTitle>
                 <AlertDescription className="text-lg font-semibold">
                   {pricingResult.estimatedPriceRange}
                 </AlertDescription>
-                 <p className="text-xs mt-2">This is an AI-generated estimate. Actual costs may vary.</p>
+                 <p className="text-xs mt-2 text-muted-foreground">This is an AI-generated estimate. Actual costs may vary.</p>
               </Alert>
             )}
           </CardFooter>

@@ -46,12 +46,13 @@ const prompt = ai.definePrompt({
   output: {schema: SuggestPricingOutputSchema},
   prompt: `You are an AI pricing assistant for Apex Digital Group, a full-service digital agency catering to the Indian market.
 
-You will receive a service type and a description of the client's requirements. Based on this information, you will provide an estimated price range for the service in Indian Rupees (INR). Ensure the currency symbol (₹) is included in your response (e.g., ₹50,000 - ₹75,000).
+You will receive a service type and a description of the client's requirements. Based on this information, you will provide an estimated price range for the service in Indian Rupees (INR).
+IMPORTANT: You MUST use the Indian Rupee symbol (₹) exclusively for currency. Do NOT use "INR", "Rs.", or any other abbreviations. For example, a correct response would be "₹50,000 - ₹75,000".
 
 Service Type: {{{serviceType}}}
 Requirements: {{{requirements}}}
 
-Please provide a price range in INR that is both realistic and attractive to potential clients in India.
+Please provide a price range that is both realistic and attractive to potential clients in India, strictly using the ₹ symbol.
 `, config: {
     safetySettings: [
       {
