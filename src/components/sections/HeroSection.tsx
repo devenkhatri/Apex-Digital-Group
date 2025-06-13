@@ -34,7 +34,7 @@ const HeroSection = () => {
         </div>
         <div className="hidden md:block relative aspect-square max-w-md mx-auto">
            <Image 
-            src="https://placehold.co/600x600.png" 
+            src="/images/hero.png" 
             alt="Digital agency concept" 
             width={600}
             height={600}
